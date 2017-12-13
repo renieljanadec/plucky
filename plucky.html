@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html ng-app = "form">
+    <head>
+        <title> Plucky | Angular JS Form Validation</title>
+
+          <!-- Angular  | TESTING -->
+          <script src = "../angular/angular.min.js"></script>
+
+          <meta name = "viewport" content = "width=device-width initial-scale = 1">
+
+          <link rel = "icon" href = "../photo/chick.png">
+
+
+          <script>
+              var form = angular.module('form', []);
+
+              form.controller('validate', function($scope){
+                    $scope.firstname = "";
+                    $scope.lastname = "";
+                    $scope.email = "";
+                    $scope.username = "";
+                    $scope.password = "";
+                    $scope.interests = "";
+
+                    //gender
+                    //$scope.gender = [];
+
+                
+                    //package
+                    //$scope.package = ["Plucky Premium", "Plucky Basic"]
+
+                    //package prices
+                    $scope.premium = 800;
+                    $scope.basic = 500;
+              });
+          </script>
+
+          <style>
+              @import url('https://fonts.googleapis.com/css?family=Raleway');
+              
+              body
+              {
+                  font-family: 'Raleway', Helvetica, sans-serif;
+                  font-weight: normal;
+                  color: rgb(121, 117, 117);
+              }
+
+              header
+              {
+                  background-color: rgb(45, 214, 129);
+                  border-bottom: 1px solid rgb(45, 214, 129);
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  overflow: hidden;
+                  height: 65px;
+              }
+
+              header > h3.something
+              {
+                  color: #f1f1f1;
+                  margin: 15px 10%;
+                  letter-spacing: 1px;
+              }
+
+             span.logo
+              {
+                  display: inline;                 
+                  margin-right: 3px;
+              }
+
+              .container
+              {
+                  max-width: 450px;
+                  margin-top: 40px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  margin-bottom: 50px;
+
+                  padding: 45px 35px 70px;
+              }
+
+              .feedback-input
+              {
+                  font-family: Raleway, sans-serif;
+                  font-size: 13px;
+                  line-height: 20px;
+                  color: rgb(80, 67, 67);
+                  padding: 12px;
+                  
+                  margin-bottom: 10px;
+                  border: 1px solid rgb(139, 137, 137);
+                  width: 100%;
+                  box-sizing: border-box;
+                  outline: none;
+              }
+
+              .feedback-input:focus
+              {
+                  border: 1px solid rgb(138, 207, 226);
+              }
+
+              .submit
+              {
+                    float: right;
+                    color: #f1f1f1;
+                    background-color: rgb(10, 182, 110);
+                    border: 1px solid rgb(10, 182, 110);
+                    border-right: 2px solid rgb(122, 119, 119);
+                    border-bottom: 2px solid rgb(122, 119, 119);
+                    padding: 12px 5px 12px 5px;
+                    text-transform: uppercase;
+                    font-weight: 100;
+                    letter-spacing: 0.5px;
+
+                    margin-top: 5px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    cursor: pointer;
+              }
+
+              .submit:hover
+              {
+                  background-color: rgb(25, 121, 53);
+                  border: 1px solid rgb(25, 121, 53);
+                  transition: ease-in-out 0.5s;
+                  cursor: pointer;
+              }
+
+              p.description
+              {
+                  max-width: 500px;
+                  text-align: center;
+                  line-height: 25px;
+                  padding: 3px;
+              }
+
+              h4.go-plucky
+              {
+                  text-align: center;
+              }
+
+              input[type="checkbox"]
+              {
+                  margin-top: 3px;
+                  margin-bottom: 13px;
+              }
+
+              label.terms
+              {
+                  font-size: 12px;
+                  opacity: 0.8;
+              }
+
+              textarea
+              {
+                  resize: none;
+              }
+             
+
+          </style>
+    </head>
+<body>
+
+    <header>
+        <h3 class = "something"><span class = "logo"><img src = "../photo/chick.png"></span> Plucky </h3>
+    </header>
+
+    <div class = "container">
+
+        <p class = "description">
+            Plucky&trade; is a new dating app that lets you Lorem ipsum dolor sit amet, 
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+        </p>
+
+        <p class = "description">     
+            Nam libero tempore, cum soluta nobis est eligendi 
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+
+
+        <h4 class = "go-plucky"> Go and get Plucky!  </h4>
+        <form action = "#" name = "signForm" method = "post" ng-controller = "validate" novalidate>
+
+            <span ng-show = "signForm.firstname.$touched && signForm.firstname.$invalid"> * Firstname is required</span>
+            <input type = "text" class = "feedback-input" name = "firstname" ng-model = "firstname" placeholder = "Firstname" required>
+            
+            <span ng-show = "signForm.middlename.$touched && signForm.middlename.$invalid"> * Middlename is required </span>
+            <input type = "text" class = "feedback-input" name = "middlename" ng-model = "middlename" placeholder = "Middlename" required>
+
+            <span ng-show = "signForm.lastname.$touched && signForm.lastname.$invalid"> * Lastname is required </span>
+            <input type = "text" class = "feedback-input" name = "lastname" ng-model = "lastname" placeholder = "Lastname" required>
+
+            <span ng-show = "signForm.gender.$touched && signForm.gender.$error.required">* Gender is required</span>
+            <select class = "feedback-input" name = "gender" data-ng-model = "gender" required>
+                <option value = "">Choose Gender</option>
+                <option value = "Female"> Female </option>
+                <option value = "Male"> Male </option>
+            </select>
+            
+            <span ng-show = "signForm.email.$touched && !signForm.email.$dirty"> * Email is required </span>
+            <span ng-show = "signForm.email.$dirty && signForm.email.$invalid && signForm.email.$error.required"> * Valid email address only </span>
+            <input type = "text" class = "feedback-input" name = "email" ng-model = "email" placeholder = "Email Address" required>
+
+            <span ng-show = "signForm.address.$touched && signForm.address.$error.required"> * Address is required </span>
+            <input type = "text" class = "feedback-input" name = "address" ng-model = "address" placeholder = "Address" required>
+            
+            <span ng-show = "signForm.username.$touched && signForm.username.$error.required"> * Username is required </span>
+            <span ng-show = "signForm.username.$error.minlength">* Username should be at least 5 characters </span>
+            <span ng-show = "signForm.username.$error.maxlength"> * Username is too long </span>
+            <input type = "text" class = "feedback-input" name = "username" ng-model = "username" ng-minlength = "5" ng-maxlength = "12" placeholder = "Username" required>
+            
+            <span ng-show = "signForm.password.$touched && !signForm.password.$dirty && signForm.password.$error.required"> * Password is required </span>
+            <span ng-show = "signForm.password.$error.minlength && signForm.password.$dirty"> * Password  is too short </span>
+            <span ng-show = "signForm.password.$error.maxlength"> * Password is too long </span>
+            <input type = "password" class = "feedback-input" name = "password" ng-model = "password" ng-minlength = "5" ng-maxlength = "15" placeholder = "Password" required>
+
+            <span ng-show = "signForm.package.$touched && signForm.package.$error.required"> * Choose your package</span>
+            <select class = "feedback-input" name = "package" data-ng-model = "package" required>
+                <option value = "">Choose Your Package</option>
+                <option value = "plucky-premium"> Plucky Premium &trade;</option>
+                <option value = "plucky-basic"> Plucky Basic</option>
+            </select>
+
+            <!-- switch menu -->
+            <div ng-switch = "package">
+                <div ng-switch-when = "plucky-premium">
+                    <h3> Plucky Premium &trade;</h3>
+                    <p> Plucky Premium&trade; comes with a free lemonade with honey and ice and lorem ipsum dolor siquijor blah blah blah</p>
+
+                    <span>Price</span>
+                    <input type = "text" class = "feedback-input" value = "{{ premium }}" readonly>
+                </div>
+
+                <div ng-switch-when = "plucky-basic">
+                    <h3> Plucky Basic</h3>
+                    <p> The known and classic Plucky Basic is now improved: with new features and lorem ipsum dolor blah blah</p>
+
+                    <span>Price</span>
+                    <input type = "text" class = "feedback-input" value = "{{ basic }}" readonly>
+                </div>
+            </div>
+
+            <span ng-show = "signForm.interests.$touched && signForm.interests.$pristine">* You need to fill this up</span>
+            <textarea class = "feedback-input" name = "interests" ng-model = "interests" placeholder = "I am interested in. . ." cols = "5" rows = "3"></textarea>
+
+
+            <span ng-show = "signForm.terms.$touched && signForm.terms.$error.required"> * You must sign the terms and conditions</span> <br /> 
+            <input type = "checkbox" name = "terms" ng-model = "terms" required><label for = "terms" class = "terms"> I have read the terms and conditions </label>
+
+            <input type = "submit" name = "submit" class = "submit" value = "Pluccck!" ng-disabled = "signForm.$invalid">
+        </form>
+
+    </div>
+
+
+
+
+</body>
+</html>
